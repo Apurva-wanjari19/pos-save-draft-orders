@@ -1,0 +1,25 @@
+<templates id="template" xml:space="preserve">
+  <t t-name="DraftOrderListPopup" owl="1">
+  <div class="popup popup-selection">
+    <div class="popup-title">
+      <t t-esc="props.title || 'Import Draft Order'"/>
+    </div>
+    <div class="popup-body">
+      <div class="order-list">
+        <t t-foreach="state.orders" t-as="order" t-index="order_index" t-key="order.id">
+          <div class="order-line"
+              t-att-class="state.selectedIndex === order_index ? 'selected' : ''"
+              t-on-click="select.bind(this, order_index)">
+            <strong t-esc="order.pos_reference"/> –
+            <span t-esc="order.customer_name"/>
+          </div>
+        </t>
+      </div>
+    </div>
+    <div class="popup-footer">
+      <button class="button cancel" t-on-click="cancel">Cancel</button>
+      <button class="button confirm" t-on-click="confirm">Import</button>
+    </div>
+  </div>
+</t>
+</templates>
